@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinateur de Travaux</title>
+    <!-- Chargement direct du fichier CSS pour le design premium demandé -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Police d'écriture moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div>
+                <h1>Coordinateur de Travaux - Peinture Bâtiment</h1>
+            </div>
+            <div id="cloud-status" class="cloud-status offline" title="Statut de la synchronisation GitHub">
+                <span class="cloud-icon">☁️</span>
+                <span class="cloud-text">Local</span>
+            </div>
+        </header>
+        
+        <!-- Navigation par onglets -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="chantiers">A / CHANTIERS</button>
+            <button class="tab-btn" data-tab="effectifs">B / EFFECTIFS & MATÉRIEL</button>
+            <button class="tab-btn" data-tab="nouveau">C / NOUVEAU CHANTIER</button>
+            <button class="tab-btn" data-tab="parametres">D / PARAMÈTRES</button>
+        </nav>
+
+        <main class="content">
+            <!-- Onglet A : Chantiers -->
+            <section id="chantiers" class="tab-content active">
+                <div class="chantiers-grid" id="chantiers-container">
+                    <!-- Les cartes des chantiers seront générées ici par JavaScript -->
+                </div>
+            </section>
+
+            <!-- Onglet B : Effectifs & Matériel -->
+            <section id="effectifs" class="tab-content">
+                <div class="chantiers-grid" id="effectifs-container">
+                    <!-- Les cartes des effectifs/matériel par chantier seront générées ici par JavaScript -->
+                </div>
+            </section>
+
+            <!-- Onglet C : Nouveau Chantier -->
+            <section id="nouveau" class="tab-content">
+                <div class="card glassmorphism" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                    <h2>Créer un Nouveau Chantier</h2>
+                    <br>
+                    <div class="form-group">
+                        <label>Nom du chantier :</label>
+                        <input type="text" id="new-chantier-name" class="input-field" placeholder="Ex: Chantier Monaco...">
+                    </div>
+                    <button id="btn-submit-nouveau" class="btn-primary" style="width: 100%; margin-top: 1rem;">Ajouter ce chantier</button>
+                </div>
+            </section>
+
+            <!-- Onglet D : Paramètres (Cloud Sync) -->
+            <section id="parametres" class="tab-content">
+                <div class="card glassmorphism" style="max-width: 600px; margin: 0 auto;">
+                    <h2 style="text-align: center; margin-bottom: 1rem;">Sauvegarde en ligne (GitHub)</h2>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: center;">
+                        Synchronisez vos données entre vos appareils en utilisant un "Gist" GitHub.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label>Token d'accès (Personal Access Token) :</label>
+                        <input type="password" id="github-token" class="input-field" placeholder="ghp_xxxxxxxxxxxx...">
+                        <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">
+                            <a href="https://github.com/settings/tokens/new" target="_blank" style="color: var(--accent); text-decoration: none;">Cliquez ici pour générer un Token</a> (cochez la case "gist").
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ID du Gist (Optionnel, utile pour lier un 2ème appareil) :</label>
+                        <input type="text" id="github-gist-id" class="input-field" placeholder="Laissez vide pour créer un nouveau Gist automatiquement">
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button id="btn-save-github-config" class="btn-primary" style="flex: 1;">Connecter / Sauvegarder Config</button>
+                        <button id="btn-force-sync" class="btn-primary" style="flex: 1; background-color: #10b981; border-color: #10b981;">Forcer la synchronisation</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script de logique et de sauvegarde automatique -->
+    <script src="app.js"></script>
+</body>
+</html>
